@@ -18,5 +18,4 @@
 
 
 
-
 #endif //FRACTIONIMPL_H
