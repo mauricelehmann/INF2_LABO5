@@ -19,5 +19,10 @@ using namespace std;
 
 int main(){
 
+    Fraction<int> f1(1,2);
+    Fraction<int> f2(2,4);
+
+    cout << f1.identite(f2);
+
     return EXIT_SUCCESS;
 }

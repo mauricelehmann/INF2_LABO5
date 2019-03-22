@@ -18,7 +18,7 @@
 template<typename T> class Fraction;
 //Pré
 template<typename T>
-std::ostream& operator <<(std::ostream& os, const Fraction<T>& f);
+std::ostream& operator << (std::ostream& os, const Fraction<T>& f);
 
 template<typename T>
 bool operator == (std::ostream& os, const Fraction<T>& f);
@@ -26,12 +26,19 @@ bool operator == (std::ostream& os, const Fraction<T>& f);
 template<typename T>
 Fraction<T> operator + (Fraction<T> lhs, Fraction<T>& rhs );
 
-
+//NE MARCHE PAS , POURQUOI ?
 //template<typename T>
 //Fraction<T>& operator += (const Fraction<T>& rhs);
 
+
 template<typename T>
 Fraction<T> operator * (Fraction<T> lhs, Fraction<T>& rhs );
+
+
+//NE MARCHE PAS , POURQUOI ?
+//template<typename T>
+// Fraction<T>& Fraction<T>::operator *= (const Fraction<T>& rhs);
+
 
 
 #endif /* OPERATORFRACTIONIMPL_H */

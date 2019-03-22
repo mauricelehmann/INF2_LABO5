@@ -22,6 +22,7 @@ template<typename T>
 class Fraction {
 public:
    //Fonctions friend
+
    friend std::ostream& operator << <T>(std::ostream& os, const Fraction<T>& f);
    //surcharge de l'operateur cast
    //TODO
@@ -30,8 +31,8 @@ public:
    //surcharge de l'operateur ==
    friend bool operator == <T>(std::ostream& os, const Fraction<T>& f);
 
-   //surcharge de l'opérateur <<
-   //friend std::ostream& operator << <T>(std::ostream& os, const Fraction<T>& f);
+
+   Fraction<T>& operator += (const Fraction<T>& rhs);
 
    //surcharge de l'opérateur +
    friend Fraction<T> operator + <T>(Fraction<T> lhs, Fraction<T>& rhs );
@@ -39,11 +40,12 @@ public:
    //surcharge de l'opérateur +=
    //Fraction<T>& operator += <T>(const Fraction<T>& rhs);
 
-  //surcharge de l'opérateur *
-  friend Fraction<T> operator * <T>(Fraction<T> lhs, Fraction<T>& rhs );
-   //TODO
 
-//surcharge de l'opérateur *=
+   //surcharge de l'opérateur *=
+    Fraction<T>& operator *= (const Fraction<T>& rhs);
+
+    //surcharge de l'opérateur *
+    friend Fraction<T> operator * <T>(Fraction<T> lhs, Fraction<T>& rhs );
    //TODO
 
 
@@ -59,8 +61,6 @@ public:
 private:
     T denominateur,numerateur;
 };
-
-
 
 
 #include "fractionImpl.h"
