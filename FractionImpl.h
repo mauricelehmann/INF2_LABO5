@@ -16,16 +16,20 @@
 
 //Constructeur
 template<typename T>
-Fraction<T>::Fraction(const T& denominateur,const T& numerateur){
+Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
     //Test à faire avec MAX VALUE ETC...
-    this->denominateur = denominateur;
     this->numerateur = numerateur;
+    this->denominateur = denominateur;
 }
 
 template<typename T>
 Fraction<T> Fraction<T>::simplifie() const{
 
 }
+
+/*
+    Définitions des méthodes
+*/
 
 //TODO:  Que ce passe-t-il quand on compare deux type différents ?
 template<typename T>
@@ -35,6 +39,50 @@ bool Fraction<T>::identite(const Fraction<T>& f) const{
     }
     return false;
 }
+
+
+/*
+    Définitions des opérateurs
+*/
+template<typename T>
+Fraction<T>& Fraction<T>::operator += (Fraction<T>& rhs){
+
+}
+
+template<typename T>
+Fraction<T>& Fraction<T>::operator *= (Fraction<T>& rhs){
+    this->numerateur *= rhs.numerateur;
+    this->denominateur *= rhs.denominateur;
+    return *this;
+}
+template<typename T>
+Fraction<T>::operator double() const {
+    return Fraction<double>((double)this->numerateur,(double)this->denominateur);
+}
+
+template<typename T>
+Fraction<T> operator + (Fraction<T> lhs, Fraction<T>& rhs ){
+
+}
+
+template<typename T>
+Fraction<T> operator * (Fraction<T> lhs, Fraction<T>& rhs ){
+    lhs *= rhs;
+    return lhs;
+}
+
+template<typename T>
+std::ostream& operator << (std::ostream& os, const Fraction<T>& f){
+    return os << f.numerateur << "/" << f.denominateur ;
+}
+
+template<typename T>
+bool operator == (std::ostream& os, const Fraction<T>& f){
+
+}
+
+
+
 
 
 

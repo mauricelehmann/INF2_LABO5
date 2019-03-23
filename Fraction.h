@@ -15,42 +15,47 @@
 #define FRACTION_H
 
 #include <iostream> //ostream
-#include "OperatorFractionImpl.h"
+
+//Pré-déclaration de la classe, pour pré-déclarer correctement les surcharges opérateurs
+template<typename T> class Fraction;
+
+template<typename T>
+std::ostream& operator << (std::ostream& os, const Fraction<T>& f);
+
+template<typename T>
+bool operator == (std::ostream& os, const Fraction<T>& f);
+
+template<typename T>
+Fraction<T> operator + (Fraction<T> lhs, Fraction<T>& rhs );
+
+template<typename T>
+Fraction<T> operator * (Fraction<T> lhs, Fraction<T>& rhs );
 
 
 template<typename T>
 class Fraction {
-public:
-   //Fonctions friend
-
-   friend std::ostream& operator << <T>(std::ostream& os, const Fraction<T>& f);
-   //surcharge de l'operateur cast
-   //TODO
-
-   //Retourne true meme si on compare 2/4 et 1/2 !
-   //surcharge de l'operateur ==
-   friend bool operator == <T>(std::ostream& os, const Fraction<T>& f);
-
-
-   Fraction<T>& operator += (const Fraction<T>& rhs);
-
-   //surcharge de l'opérateur +
-   friend Fraction<T> operator + <T>(Fraction<T> lhs, Fraction<T>& rhs );
-
-   //surcharge de l'opérateur +=
-   //Fraction<T>& operator += <T>(const Fraction<T>& rhs);
-
-
-   //surcharge de l'opérateur *=
-    Fraction<T>& operator *= (const Fraction<T>& rhs);
-
+    //Fonctions friend
+    friend std::ostream& operator << <T>(std::ostream& os, const Fraction<T>& f);
+    //surcharge de l'operateur cast
+    //Retourne true meme si on compare 2/4 et 1/2 !
+    //surcharge de l'operateur ==
+    friend bool operator == <T>(std::ostream& os, const Fraction<T>& f);
+    //surcharge de l'opérateur +
+    friend Fraction<T> operator + <T>(Fraction<T> lhs, Fraction<T>& rhs );
     //surcharge de l'opérateur *
     friend Fraction<T> operator * <T>(Fraction<T> lhs, Fraction<T>& rhs );
-   //TODO
 
+public:
+
+   //surcharge de l'opérateur +=
+   Fraction<T>& operator += (Fraction<T>& rhs);
+   //surcharge de l'opérateur *=
+   Fraction<T>& operator *= (Fraction<T>& rhs);
+   //surcharge de l'operateur cast (typename)
+   operator double() const;
 
     //Constructeur
-    Fraction(const T& denominateur,const T& numerateur);
+    Fraction(const T& numerateur,const T& denominateur);
 
     //fonction simplifie, qui retourne uniquement
     Fraction<T> simplifie() const;
