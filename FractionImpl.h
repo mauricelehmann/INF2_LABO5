@@ -23,10 +23,21 @@ Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
 }
 
 template<typename T>
-Fraction<T> Fraction<T>::simplifie() const{
+Fraction<T> Fraction<T>::simplifie() {
 
+    T reste;
+    T numerateurPgdc = numerateur;
+    T denominateurPgdc = denominateur;
+    
+    while(denominateurPgdc != 0) {
+        reste = numerateurPgdc % denominateurPgdc;
+        numerateurPgdc = denominateurPgdc;
+        denominateurPgdc = reste;
+    }
+
+    Fraction<T> fractionSimplifiee((numerateur / numerateurPgdc), (denominateur / numerateurPgdc));
+    return fractionSimplifiee;
 }
-
 /*
     Définitions des méthodes
 */
@@ -73,7 +84,7 @@ Fraction<T> operator * (Fraction<T> lhs, Fraction<T>& rhs ){
 
 template<typename T>
 std::ostream& operator << (std::ostream& os, const Fraction<T>& f){
-    return os << f.numerateur << "/" << f.denominateur ;
+    return os << f.numerateur << "/" << f.denominateur  << std::endl;
 }
 
 template<typename T>
@@ -81,9 +92,15 @@ bool operator == (std::ostream& os, const Fraction<T>& f){
 
 }
 
+template<typename T>
+T Fraction<T>::getNumerateur() const {
+    return numerateur;
+}
 
-
-
+template<typename T>
+T Fraction<T>::getDenominateur() const {
+    return denominateur;
+}
 
 
 
