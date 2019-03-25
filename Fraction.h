@@ -48,9 +48,9 @@ class Fraction {
 public:
 
    //surcharge de l'opérateur +=
-   Fraction<T>& operator += (Fraction<T>& rhs);
+   Fraction<T>& operator += (Fraction<T> rhs);
    //surcharge de l'opérateur *=
-   Fraction<T>& operator *= (Fraction<T>& rhs);
+   Fraction<T>& operator *= (const Fraction<T>& rhs);
    //surcharge de l'operateur cast (typename)
    operator double() const;
 
