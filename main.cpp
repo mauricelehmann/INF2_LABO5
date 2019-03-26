@@ -20,11 +20,10 @@ using namespace std;
 int main(){
 
     try{
-        Fraction<int> f1(1,2);
-        Fraction<long long> f2(10,36);
+        Fraction<int> f1(2,4);
+        Fraction<int> f2(1,3);
 
-
-
+        cout << f2 + f1;
 
     }catch( exception& e){
         cout << e.what();

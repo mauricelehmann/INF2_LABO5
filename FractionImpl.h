@@ -68,11 +68,20 @@ Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
         throw std::overflow_error("overflow dans l addition des denominateurs");
     }
     //simplifier *this
+    *this = this->simplifie();
     //simplifier rhs
+    rhs = rhs.simplifie();
 
+    //Multiplication croisée des numerateurs et denominateurs
+    T tmpDenominateur = denominateur;
     numerateur *= rhs.denominateur;
-    denominateur *= rhs.numerateur;
-
+    rhs.numerateur *= denominateur;
+    denominateur *= rhs.denominateur;
+    rhs.denominateur *= tmpDenominateur;
+    //Addition des numérateurs
+    numerateur += rhs.numerateur;
+    *this = this->simplifie();
+    return *this;
 }
 
 template<typename T>
@@ -95,7 +104,8 @@ Fraction<T>::operator double() const {
 
 template<typename T>
 Fraction<T> operator + (Fraction<T> lhs, Fraction<T>& rhs ){
-
+    lhs += rhs;
+    return lhs;
 }
 
 template<typename T>
