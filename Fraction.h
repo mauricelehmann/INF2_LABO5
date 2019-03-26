@@ -15,6 +15,7 @@
 #define FRACTION_H
 
 #include <iostream> //ostream
+#include <limits>
 
 //Pré-déclaration de la classe, pour pré-déclarer correctement les surcharges opérateurs
 template<typename T> class Fraction;
@@ -54,10 +55,6 @@ public:
    //surcharge de l'operateur cast (typename)
    operator double() const;
 
-   T getNumerateur() const;
-
-   T getDenominateur() const;
-
     //Constructeur
     Fraction(const T& numerateur,const T& denominateur);
 
@@ -66,6 +63,7 @@ public:
 
     //Test si deux fractions sont "strictement égale" genre : 1/2 et 1/2 oui , mais 1/2 et 2/4 non
     bool identite(const Fraction<T>& f) const;
+
 
 private:
     T denominateur,numerateur;

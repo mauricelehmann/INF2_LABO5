@@ -14,8 +14,6 @@
 #ifndef FRACTIONIMPL_H
 #define FRACTIONIMPL_H
 
-#include <limits>
-
 //Constructeur
 template<typename T>
 Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
@@ -36,15 +34,14 @@ Fraction<T> Fraction<T>::simplifie() {
     T reste;
     T numerateurPgdc = numerateur;
     T denominateurPgdc = denominateur;
-    
+
     while(denominateurPgdc != 0) {
         reste = numerateurPgdc % denominateurPgdc;
         numerateurPgdc = denominateurPgdc;
         denominateurPgdc = reste;
     }
 
-    Fraction<T> fractionSimplifiee((numerateur / numerateurPgdc), (denominateur / numerateurPgdc));
-    return fractionSimplifiee;
+    return Fraction<T> ((numerateur / numerateurPgdc), (denominateur / numerateurPgdc));
 }
 /*
     Définitions des méthodes
@@ -58,7 +55,6 @@ bool Fraction<T>::identite(const Fraction<T>& f) const{
     }
     return false;
 }
-
 
 /*
     Définitions des opérateurs
@@ -118,20 +114,4 @@ bool operator == (std::ostream& os, const Fraction<T>& f){
 
 }
 
-<<<<<<< HEAD
-=======
-template<typename T>
-T Fraction<T>::getNumerateur() const {
-    return numerateur;
-}
-
-template<typename T>
-T Fraction<T>::getDenominateur() const {
-    return denominateur;
-}
-
-
-
-
->>>>>>> 22567255a0eca6b79969ecbaaf327b1a1b7dcd1e
 #endif //FRACTIONIMPL_H

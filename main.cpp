@@ -19,10 +19,15 @@ using namespace std;
 
 int main(){
 
-    Fraction<int> f1(1,2);
-    Fraction<int> f2(2,4);
+    try{
+        Fraction<int> f1(1,2);
+        Fraction<long long> f2(10,36);
 
-    cout << (double)f1;
 
+
+
+    }catch( exception& e){
+        cout << e.what();
+    }
     return EXIT_SUCCESS;
 }
