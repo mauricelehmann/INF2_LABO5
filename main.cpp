@@ -13,12 +13,15 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "fraction.h"
+#include "Fraction.h"
 using namespace std;
 
 
 int main(){
+    Fraction<int> f1(30, 75);
 
+    cout << f1;
+    cout << f1.simplifie();
     try{
         Fraction<int> f1(2,4);
         Fraction<int> f2(1,3);
@@ -28,5 +31,6 @@ int main(){
     }catch( exception& e){
         cout << e.what();
     }
+
     return EXIT_SUCCESS;
 }
