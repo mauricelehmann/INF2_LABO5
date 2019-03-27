@@ -16,7 +16,7 @@
 
 #include <iostream> //ostream
 #include <limits>
-
+#include <cmath> //abs
 //Pré-déclaration de la classe, pour pré-déclarer correctement les surcharges opérateurs
 template<typename T> class Fraction;
 

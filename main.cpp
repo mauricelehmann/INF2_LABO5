@@ -14,17 +14,41 @@
 #include <iostream>
 #include <cstdlib>
 #include "fraction.h"
+#include <limits>
 using namespace std;
 
+
+void LeibnizApproximation(const size_t& nbIterations ){
+    try{
+        int numerateur = 4;
+        int denumerateur = 1;
+        short signe = 1;
+        Fraction<long long> f1(numerateur,denumerateur);
+
+        while(i < 50){
+            signe *= -1;
+            f1 += Fraction<long long>((signe * numerateur),denumerateur+(2*i++)) ;
+        }
+        //cout << f1 << endl;
+    }catch( exception& e){
+        cout << e.what();
+    }
+}
 
 int main(){
 
     try{
-        Fraction<int> f1(2,4);
-        Fraction<int> f2(1,3);
+        size_t i = 1;
+        int numerateur = 4;
+        int denumerateur = 1;
+        short signe = 1;
+        Fraction<long long> f1(numerateur,denumerateur);
 
-        cout << f2 + f1;
-
+        while(i < 50){
+            signe *= -1;
+            f1 += Fraction<long long>((signe * numerateur),denumerateur+(2*i++)) ;
+        }
+        //cout << f1 << endl;
     }catch( exception& e){
         cout << e.what();
     }

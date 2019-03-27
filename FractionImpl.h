@@ -61,25 +61,38 @@ bool Fraction<T>::identite(const Fraction<T>& f) const{
 */
 template<typename T>
 Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
-    if(numerateur > (std::numeric_limits<T>::max() - rhs.numerateur)){
-        throw std::overflow_error("overflow dans l addition des numerateurs");
-    }
-    if(denominateur > (std::numeric_limits<T>::max() - rhs.denominateur)){
-        throw std::overflow_error("overflow dans l addition des denominateurs");
-    }
+
     //simplifier *this
     *this = this->simplifie();
     //simplifier rhs
     rhs = rhs.simplifie();
 
+    if(numerateur > (std::numeric_limits<T>::max() - abs(rhs.numerateur))){
+        throw std::overflow_error("overflow dans l addition des numerateurs");
+    }
+    if(denominateur > (std::numeric_limits<T>::max() - abs(rhs.denominateur))){
+        throw std::overflow_error("overflow dans l addition des denominateurs");
+    }
+
+    if(numerateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
+        throw std::overflow_error("overflow dans la multiplication");
+    }
+    if(denominateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
+        throw std::overflow_error("overflow dans la multiplication");
+    }
+    if(denominateur > (std::numeric_limits<T>::max() / abs(rhs.numerateur))){
+        throw std::overflow_error("overflow dans la multiplication");
+    }
     //Multiplication croisée des numerateurs et denominateurs
     T tmpDenominateur = denominateur;
+
     numerateur *= rhs.denominateur;
     rhs.numerateur *= denominateur;
     denominateur *= rhs.denominateur;
     rhs.denominateur *= tmpDenominateur;
     //Addition des numérateurs
     numerateur += rhs.numerateur;
+
     *this = this->simplifie();
     return *this;
 }
@@ -116,7 +129,7 @@ Fraction<T> operator * (Fraction<T> lhs, Fraction<T>& rhs ){
 
 template<typename T>
 std::ostream& operator << (std::ostream& os, const Fraction<T>& f){
-    return os << f.numerateur << "/" << f.denominateur  << std::endl;
+    return os << f.numerateur << "/" << f.denominateur ;
 }
 
 template<typename T>
