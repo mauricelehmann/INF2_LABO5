@@ -99,10 +99,10 @@ Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
 
 template<typename T>
 Fraction<T>& Fraction<T>::operator *= (const Fraction<T>& rhs){
-    if(numerateur > (std::numeric_limits<T>::max() / rhs.numerateur)){
+    if(numerateur > (std::numeric_limits<T>::max() / abs(rhs.numerateur))){
         throw std::overflow_error("overflow dans la multiplication des numerateurs");
     }
-    if(denominateur > (std::numeric_limits<T>::max() / rhs.denominateur)){
+    if(denominateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
         throw std::overflow_error("overflow dans la multiplication des denominateurs");
     }
     numerateur *= rhs.numerateur;
