@@ -41,18 +41,19 @@ int main(){
 
     try{
         size_t i = 1;
-        int numerateur = 4;
-        int denumerateur = 1;
-        short signe = 1;
-        Fraction<long long> f1(numerateur,denumerateur);
+        long long numerateur = 4;
+        long long denumerateur = 2;
+        short signe = -1;
+        Fraction<long long> f1(3,1);
 
-        while(i < 50){
+        while(i++ < 100){
             signe *= -1;
-            f1 += Fraction<long long>((signe * numerateur),denumerateur+(2*i++)) ;
+            f1 += Fraction<long long>((signe * numerateur),(denumerateur++ * denumerateur++ * denumerateur) ) ;
+            cout << (double)f1 << endl;
         }
-        //cout << f1 << endl;
     }catch( exception& e){
         cout << e.what();
     }
+
     return EXIT_SUCCESS;
 }
