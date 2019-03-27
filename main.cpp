@@ -13,47 +13,42 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "fraction.h"
+#include "Fraction.h"
 #include <limits>
 using namespace std;
 
 
-void LeibnizApproximation(const size_t& NB_ITERATIONS ){
-    try{
-        size_t i = 1;
-        int numerateur = 4;
-        int denumerateur = 1;
-        short signe = 1;
-        Fraction<long long> f1(numerateur,denumerateur);
+template <typename T>
+void LeibnizApproximation(const size_t& NB_ITERATIONS );
 
-        while(i < NB_ITERATIONS){
-            signe *= -1;
-            f1 += Fraction<long long>((signe * numerateur),denumerateur+(2*i++)) ;
-            cout << (double)f1 << endl;
-        }
-
-    }catch( exception& e){
-        cout << e.what();
-    }
-}
 
 int main(){
 
-    try{
-        size_t i = 1;
-        long long numerateur = 4;
-        long long denumerateur = 2;
-        short signe = -1;
-        Fraction<long long> f1(3,1);
+    cout << "Fraction en int: " << endl;
+    LeibnizApproximation<int>(50);
+    cout<< endl << endl;
 
-        while(i++ < 100){
+    cout << "Fraction en long long: " << endl;
+    LeibnizApproximation<long long>(50);
+    cout << endl;
+    return EXIT_SUCCESS;
+}
+
+template<typename T>
+void LeibnizApproximation(const size_t& NB_ITERATIONS ){
+    try{
+        int numerateur = 4;
+        int denumerateur = 1;
+        short signe = 1;
+        Fraction<T> f1(numerateur,denumerateur);
+
+        while(i < NB_ITERATIONS){
             signe *= -1;
-            f1 += Fraction<long long>((signe * numerateur),(denumerateur++ * denumerateur++ * denumerateur) ) ;
-            cout << (double)f1 << endl;
+            f1 += Fraction<T>((signe * numerateur),denumerateur+(2*i++)) ;
+            cout << "iteration numero " << i << " : " << (double)f1 << endl;
         }
+
     }catch( exception& e){
         cout << e.what();
     }
-
-    return EXIT_SUCCESS;
 }
