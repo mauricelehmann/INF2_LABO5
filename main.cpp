@@ -13,12 +13,24 @@
 
 #include <iostream>
 #include <cstdlib>
+<<<<<<< HEAD
 #include "fraction.h"
 #include <limits>
 using namespace std;
 
 
 void LeibnizApproximation(const size_t& nbIterations ){
+=======
+#include "Fraction.h"
+using namespace std;
+
+
+int main(){
+    Fraction<int> f1(30, 75);
+
+    cout << f1;
+    cout << f1.simplifie();
+>>>>>>> 80e9fd9139e980b822dc3a7f0554bd1ba0975c0e
     try{
         int numerateur = 4;
         int denumerateur = 1;
@@ -52,5 +64,6 @@ int main(){
     }catch( exception& e){
         cout << e.what();
     }
+
     return EXIT_SUCCESS;
 }
