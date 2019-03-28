@@ -28,6 +28,13 @@ Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
     }
 }
 
+//Constructeur par copie
+template<typename T>
+Fraction<T>::Fraction(const Fraction<T>& rhs){
+    numerateur = rhs.numerateur;
+    denominateur = rhs.denominateur;
+}
+
 template<typename T>
 Fraction<T> Fraction<T>::simplifie() {
 
@@ -133,8 +140,10 @@ std::ostream& operator << (std::ostream& os, const Fraction<T>& f){
 }
 
 template<typename T>
-bool operator == (std::ostream& os, const Fraction<T>& f){
-
+bool operator == (Fraction<T>& lhs,Fraction<T>& rhs){
+    Fraction<T> lhsSimplifie = lhs.simplifie();
+    Fraction<T> rhsSimplifie = rhs.simplifie();
+    return (lhsSimplifie.numerateur == rhsSimplifie.numerateur) && (lhsSimplifie.denominateur == rhsSimplifie.denominateur);
 }
 
 #endif //FRACTIONIMPL_H

@@ -12,6 +12,7 @@
 */
 
 #include <iostream>
+#include <iomanip> //boolalpha
 #include <cstdlib>
 #include "Fraction.h"
 #include <limits>
@@ -22,27 +23,13 @@ template <typename T>
 void leibnizApproximation(const size_t& NB_ITERATIONS );
 template<typename T>
 void nilakanthaApproximation(const size_t& NB_ITERATIONS);
-
+template<typename T>
+void testsClasseFraction();
 
 int main(){
 
-    //Tests des méthodes de la classe générique Fraction<T>
-    Fraction<int> f1(1,2);
-    Fraction<int> f2(-3,4);
-
-    //Affichage
-    cout << "f1 = " << f1 << "\nf2 = " << f2 << endl;
-
-    //Additions
-    cout << "f1 + f2 = " << f1 + f2 << endl;
-    f1 += f2;
-    cout << "f1 += f2 ; f1 = " << f1 << endl;
-
-    //Multiplication
-    cout << "f1 * f2 = " << f1 * f2 << endl;
-    f1 *= f2;
-    cout << "f1 *= f2 ; f1 = " << f1 << endl;
-
+    //Test de la classes Fraction
+    testsClasseFraction<int>();
 
     //Approximations de PI
     const size_t NB_ITERATIONS = 50;
@@ -61,6 +48,7 @@ int main(){
     cout << "Approximation de Nilakantha (long long)" << endl;
     nilakanthaApproximation<long long>(NB_ITERATIONS);
     cout << endl;
+
     return EXIT_SUCCESS;
 }
 
@@ -98,4 +86,40 @@ void nilakanthaApproximation(const size_t& NB_ITERATIONS){
     }catch( exception& e){
         cout << e.what();
     }
+}
+template<typename T>
+void testsClasseFraction(){
+    //Tests des méthodes de la classe générique Fraction<T>
+    Fraction<T> f1(1,2);
+    Fraction<T> f2(-3,4);
+    Fraction<T> f3(2,4);
+    Fraction<T> f4(250,500);
+
+    //Affichage
+    cout << "Tests d affichage : " << endl;
+    cout << "f1 = " << f1 << "\nf2 = " << f2 << endl << endl;
+
+    //Additions
+    cout << "Tests d additions : " << endl;
+    cout << "f1 + f2 = " << f1 + f2 << endl;
+    f1 += f2;
+    cout << "f1 += f2 ; f1 = " << f1 << endl << endl;
+
+    //Multiplication
+    cout << "Tests de multiplications : " << endl;
+    cout << "f1 * f2 = " << f1 * f2 << endl;
+    f1 *= f2;
+    cout << "f1 *= f2 ; f1 = " << f1 << endl << endl;
+
+    //Identité
+    cout << "Test fonction identite : " << endl;
+    cout << boolalpha << f3 << " identite avec " << f4 << " = " << f3.identite(f4) << endl << endl;
+
+    //operteur ==
+    cout << "Test de l operateur ==  : " << endl;
+    cout << boolalpha << f3 << " == " << f4 << " : " << (f3 == f4) << endl << endl;
+
+    //Simplife
+    cout << "Test de la fonction simplifie : " << endl;
+    cout << f4 << " se simplifie en " << f4.simplifie() << endl << endl << endl;
 }
