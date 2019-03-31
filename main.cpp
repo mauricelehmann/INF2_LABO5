@@ -5,7 +5,9 @@
  Auteur(s)   : Maurice Lehmann
  Date        : 20.03.2019
 
- But         : TODO
+ But         : Tester les approximations de PI de leibniz et de Nilakantha
+               Et tester les surcharge d'operateur sur les fractions (+, +=, *, *=, ==)
+               ainsi que la simplification d'une  fraction et que 2 fractions soient pareil
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
@@ -32,6 +34,7 @@ int main(){
     testsClasseFraction<int>();
 
     //Approximations de PI
+
     const size_t NB_ITERATIONS = 50;
     cout << "Approximation de Leibniz (int)" << endl;
     leibnizApproximation<int>(NB_ITERATIONS);
@@ -87,6 +90,7 @@ void nilakanthaApproximation(const size_t& NB_ITERATIONS){
         cout << e.what();
     }
 }
+
 template<typename T>
 void testsClasseFraction(){
     //Tests des méthodes de la classe générique Fraction<T>

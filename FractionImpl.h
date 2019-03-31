@@ -82,13 +82,13 @@ Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
     }
 
     if(numerateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
-        throw std::overflow_error("overflow dans la multiplication");
+        throw std::overflow_error("overflow dans la multiplication entre le numerateur gauche et le denominateur droit");
     }
     if(denominateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
-        throw std::overflow_error("overflow dans la multiplication");
+        throw std::overflow_error("overflow dans la multiplication entre le denominateur gauche et le denominateur droit");
     }
     if(denominateur > (std::numeric_limits<T>::max() / abs(rhs.numerateur))){
-        throw std::overflow_error("overflow dans la multiplication");
+        throw std::overflow_error("overflow dans la multiplication entre le denominateur gauche et le numerateur droit");
     }
     //Multiplication croisée des numerateurs et denominateurs
     T tmpDenominateur = denominateur;
