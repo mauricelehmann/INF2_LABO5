@@ -22,7 +22,7 @@ using namespace std;
 
 
 template <typename T>
-void leibnizApproximation(const size_t& NB_ITERATIONS );
+void leibnizApproximation(const size_t& NB_ITERATIONS);
 template<typename T>
 void nilakanthaApproximation(const size_t& NB_ITERATIONS);
 template<typename T>
@@ -30,12 +30,12 @@ void testsClasseFraction();
 
 int main(){
 
+    const size_t NB_ITERATIONS = 50;
+
     //Test de la classes Fraction
     testsClasseFraction<int>();
 
     //Approximations de PI
-
-    const size_t NB_ITERATIONS = 50;
     cout << "Approximation de Leibniz (int)" << endl;
     leibnizApproximation<int>(NB_ITERATIONS);
     cout<< endl << endl;
@@ -58,11 +58,12 @@ int main(){
 template<typename T>
 void leibnizApproximation(const size_t& NB_ITERATIONS ){
     try{
-        T numerateur = 4;
+        T numerateur =   4;
         T denumerateur = 1;
-        short signe = 1;
+        short signe =    1;
+        size_t i =       1;
         Fraction<T> f1(numerateur,denumerateur);
-        size_t i = 1;
+
         while(i < NB_ITERATIONS){
             cout << "iteration numero " << i << " : " << (double)f1 << endl;
             signe *= -1;
@@ -76,11 +77,12 @@ void leibnizApproximation(const size_t& NB_ITERATIONS ){
 template<typename T>
 void nilakanthaApproximation(const size_t& NB_ITERATIONS){
     try{
-        size_t i = 1;
-        T numerateur = 4;
+        size_t i =       1;
+        T numerateur =   4;
         T denumerateur = 2;
-        short signe = -1;
+        short signe =   -1;
         Fraction<T> f1(3,1);
+        
         while(i < NB_ITERATIONS){
             signe *= -1;
             f1 += Fraction<T>((signe * numerateur),(denumerateur++ * denumerateur++ * denumerateur)) ;
