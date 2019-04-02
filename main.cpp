@@ -5,7 +5,8 @@
  Auteur(s)   : Maurice Lehmann
  Date        : 20.03.2019
 
- But         : TODO
+ But         : Démonstration des méthodes de la classe générique Fraction.
+               Approximation du nombre Pi via deux suites mathématique différentes
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
