@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------------
  Laboratoire : 05
  Fichier     : fractionImpl.h
- Auteur(s)   : Maurice Lehmann
+ Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 20.03.2019
 
  But         : Définition de la classe générique Fraction
@@ -13,8 +13,9 @@
 
 #ifndef FRACTIONIMPL_H
 #define FRACTIONIMPL_H
-
-//Constructeur
+/*
+    Définitions des constructeurs
+*/
 template<typename T>
 Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
     if(denominateur == 0){
@@ -27,14 +28,14 @@ Fraction<T>::Fraction(const T& numerateur,const T& denominateur){
         this->denominateur *= -1;
     }
 }
-
-//Constructeur par copie
 template<typename T>
 Fraction<T>::Fraction(const Fraction<T>& rhs){
     numerateur = rhs.numerateur;
     denominateur = rhs.denominateur;
 }
-
+/*
+    Définitions des méthodes
+*/
 template<typename T>
 Fraction<T> Fraction<T>::simplifie() {
 
@@ -50,11 +51,7 @@ Fraction<T> Fraction<T>::simplifie() {
 
     return Fraction<T> ((numerateur / numerateurPgdc), (denominateur / numerateurPgdc));
 }
-/*
-    Définitions des méthodes
-*/
 
-//TODO:  Que ce passe-t-il quand on compare deux type différents ?
 template<typename T>
 bool Fraction<T>::identite(const Fraction<T>& f) const{
     if(f.denominateur == denominateur && f.numerateur == numerateur){
@@ -62,25 +59,22 @@ bool Fraction<T>::identite(const Fraction<T>& f) const{
     }
     return false;
 }
-
 /*
     Définitions des opérateurs
 */
 template<typename T>
 Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
 
-    //simplifier *this
     *this = this->simplifie();
-    //simplifier rhs
     rhs = rhs.simplifie();
 
+    //Tests d'overflows
     if(numerateur > (std::numeric_limits<T>::max() - abs(rhs.numerateur))){
         throw std::overflow_error("overflow dans l addition des numerateurs");
     }
     if(denominateur > (std::numeric_limits<T>::max() - abs(rhs.denominateur))){
         throw std::overflow_error("overflow dans l addition des denominateurs");
     }
-
     if(numerateur > (std::numeric_limits<T>::max() / abs(rhs.denominateur))){
         throw std::overflow_error("overflow dans la multiplication entre le numerateur gauche et le denominateur droit");
     }
@@ -106,6 +100,7 @@ Fraction<T>& Fraction<T>::operator += (Fraction<T> rhs){
 
 template<typename T>
 Fraction<T>& Fraction<T>::operator *= (const Fraction<T>& rhs){
+    //Tests des overflows
     if(numerateur > (std::numeric_limits<T>::max() / abs(rhs.numerateur))){
         throw std::overflow_error("overflow dans la multiplication des numerateurs");
     }
